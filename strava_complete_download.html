@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STRAVA - Téléchargement Complet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(135deg, #1e293b, #334155, #475569);
+        color: white;
+        min-height: 100vh;
+        padding: 20px;
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: rgba(30, 41, 59, 0.8);
+        border-radius: 16px;
+        padding: 30px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    
+    .header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .logo {
+        font-size: 3rem;
+        font-weight: bold;
+        background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 10px;
+    }
+    
+    .subtitle {
+        color: #94a3b8;
+        font-size: 1.1rem;
+    }
+    
+    .download-section {
+        background: rgba(15, 23, 42, 0.6);
+        border-radius: 12px;
+        padding: 25px;
+        margin: 20px 0;
+    }
+    
+    .file-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background: rgba(51, 65, 85, 0.5);
+        border-radius: 8px;
+        margin: 10px 0;
+        border-left: 4px solid #3b82f6;
+    }
+    
+    .file-info {
+        display: flex;
+        align-items: center;
+    }
+    
+    .file-icon {
+        font-size: 1.5rem;
+        margin-right: 15px;
+    }
+    
+    .file-name {
+        font-weight: 600;
+        font-size: 1rem;
+    }
+    
+    .file-desc {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        margin-top: 2px;
+    }
+    
+    .download-btn {
+        background: linear-gradient(45deg, #10b981, #059669);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+    
+    .download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+    }
+    
+    .download-all {
+        background: linear-gradient(45deg, #8b5cf6, #7c3aed);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 1.1rem;
+        width: 100%;
+        margin: 20px 0;
+        transition: all 0.3s;
+    }
+    
+    .download-all:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4);
+    }
+    
+    .instructions {
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        border-radius: 12px;
+        padding: 20px;
+        margin: 20px 0;
+    }
+    
+    .step {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+    
+    .step-number {
+        background: #3b82f6;
+        color: white;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 15px;
+        flex-shrink: 0;
+    }
+    
+    .preview {
+        background: rgba(15, 23, 42, 0.8);
+        border-radius: 8px;
+        padding: 15px;
+        margin: 10px 0;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+        overflow-x: auto;
+        border-left: 3px solid #10b981;
+    }
+</style>
+```
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">STRAVA</div>
+            <div class="subtitle">Package Complet - Plateforme d'Agents IA</div>
+        </div>
+
+```
+    <button class="download-all" onclick="downloadAllFiles()">
+        📦 Télécharger Tous les Fichiers (ZIP Complet)
+    </button>
+    
+    <div class="download-section">
+        <h3 style="margin-bottom: 20px; color: #3b82f6;">📁 Fichiers du Projet</h3>
+        
+        <div class="file-item">
+            <div class="file-info">
+                <span class="file-icon">📄</span>
+                <div>
+                    <div class="file-name">package.json</div>
+                    <div class="file-desc">Configuration et dépendances du projet</div>
+                </div>
+            </div>
+            <button class="download-btn" onclick="downloadFile('package.json')">Télécharger</button>
+        </div>
+        
+        <div class="file-item">
+            <div class="file-info">
+                <span class="file-icon">⚙️</span>
+                <div>
+                    <div class="file-name">next.config.js</div>
+                    <div class="file-desc">Configuration Next.js</div>
+                </div>
+            </div>
+            <button class="download-btn" onclick="downloadFile('next.config.js')">Télécharger</button>
+        </div>
+        
+        <div class="file-item">
+            <div class="file-info">
+                <span class="file-icon">🎨</span>
+                <div>
+                    <div class="file-name">tailwind.config.js</div>
+                    <div class="file-desc">Configuration Tailwind CSS</div>
+                </div>
+            </div>
+            <button class="download-btn" onclick="downloadFile('tailwind.config.js')">Télécharger</button>
+        </div>
+        
+        <div class="file-item">
+            <div class="file-info">
+                <span class="file-icon">🎨</span>
+                <div>
+                    <div class="file-name">postcss.config.js</div>
+                    <div class="file-desc">Configuration PostCSS</div>
+                </div>
+            </div>
+            <button class="download-btn" onclick="downloadFile('postcss.config.js')">Télécharger</button>
+        </div>
+        
+        <div class="file-item">
+            <div class="file-info">
+                <span class="file-icon">🚫</span>
+                <div>
+                    <div class="file-name">.gitignore</div>
+                    <div class="file-desc">Fichiers à ignorer par Git</div>
+                </div>
+            </div>
+            <button class="download-btn" onclick="downloadFile('.gitignore')">Télécharger</button>
+        </div>
+        
+        <div class="file-item">
+            <div class="file-info">
+                <span class="file-icon">🏗️</span>
+                <div>
+                    <div class="file-name">app/layout.tsx</div>
+                    <div class="file-desc">Layout principal de l'application</div>
+                </div>
+            </div>
+            <button class="download-btn" onclick="downloadFile('layout.tsx')">Télécharger</button>
+        </div>
+        
+        <div class="file-item">
+            <div class="file-info">
+                <span class="file-icon">🎨</span>
+                <div>
+                    <div class="file-name">app/globals.css</div>
+                    <div class="file-desc">Styles globaux CSS</div>
+                </div>
+            </div>
+            <button class="download-btn" onclick="downloadFile('globals.css')">Télécharger</button>
+        </div>
+        
+        <div class="file-item">
+            <div class="file-info">
+                <span class="file-icon">🚀</span>
+                <div>
+                    <div class="file-name">app/page.tsx</div>
+                    <div class="file-desc">Composant principal STRAVA (interface complète)</div>
+                </div>
+            </div>
+            <button class="download-btn" onclick="downloadFile('page.tsx')">Télécharger</button>
+        </div>
+    </div>
+    
+    <div class="instructions">
+        <h3 style="margin-bottom: 15px; color: #10b981;">🚀 Instructions de Déploiement</h3>
+        
+        <div class="step">
+            <div class="step-number">1</div>
+            <div>Télécharge tous les fichiers et crée la structure de dossiers</div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">2</div>
+            <div>Upload sur GitHub : github.com → New Repository → "strava-ai"</div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">3</div>
+            <div>Déploie sur Vercel : vercel.com → Import Git Repository</div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">4</div>
+            <div>Ton site sera en ligne en 3 minutes ! 🎉</div>
+        </div>
+    </div>
+    
+    <div class="preview">
+        <strong>Structure finale :</strong><br>
+        📁 strava-ai/<br>
+        ├── 📄 package.json<br>
+        ├── 📄 next.config.js<br>
+        ├── 📄 tailwind.config.js<br>
+        ├── 📄 postcss.config.js<br>
+        ├── 📄 .gitignore<br>
+        └── 📁 app/<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;├── 📄 layout.tsx<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;├── 📄 page.tsx<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;└── 📄 globals.css
+    </div>
+</div>
+
+<script>
+    const files = {
+        'package.json': `{
+```
+
+“name”: “strava-ai”,
+“version”: “1.0.0”,
+“private”: true,
+“scripts”: {
+“dev”: “next dev”,
+“build”: “next build”,
+“start”: “next start”,
+“lint”: “next lint”
+},
+“dependencies”: {
+“next”: “14.0.0”,
+“react”: “^18.0.0”,
+“react-dom”: “^18.0.0”,
+“lucide-react”: “^0.263.1”
+},
+“devDependencies”: {
+“tailwindcss”: “^3.3.0”,
+“autoprefixer”: “^10.4.16”,
+“postcss”: “^8.4.31”,
+“@types/node”: “^20.0.0”,
+“@types/react”: “^18.0.0”,
+“@types/react-dom”: “^18.0.0”,
+“eslint”: “^8.0.0”,
+“eslint-config-next”: “14.0.0”,
+“typescript”: “^5.0.0”
+}
+}`, 'next.config.js': `/** @type {import(‘next’).NextConfig} */
+const nextConfig = {}
+
+module.exports = nextConfig`, 'tailwind.config.js': `/** @type {import(‘tailwindcss’).Config} */
+module.exports = {
+content: [
+’./pages/**/*.{js,ts,jsx,tsx,mdx}’,
+‘./components/**/*.{js,ts,jsx,tsx,mdx}’,
+’./app/**/*.{js,ts,jsx,tsx,mdx}’,
+],
+theme: {
+extend: {},
+},
+plugins: [],
+}`, 'postcss.config.js': `module.exports = {
+plugins: {
+tailwindcss: {},
+autoprefixer: {},
+},
+}`, '.gitignore': `# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+
+/coverage
+
+# Next.js
+
+/.next/
+/out/
+
+# Production
+
+/build
+
+# Misc
+
+.DS_Store
+*.pem
+
+# Debug
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
+
+.env*.local
+
+# Vercel
+
+.vercel
+
+# TypeScript
+
+*.tsbuildinfo
+next-env.d.ts`, 'layout.tsx': `import ‘./globals.css’
+
+export const metadata = {
+title: ’STRAVA - Plateforme d\‘Agents IA’,
+description: ‘Entreprise 100% autonome avec agents IA spécialisés’,
+}
+
+export default function RootLayout({
+children,
+}: {
+children: React.ReactNode
+}) {
+return (
+<html lang="fr">
+<body className="bg-gray-900">{children}</body>
+</html>
+)
+}`, 'globals.css': `@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+- {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+body {
+font-family: -apple-system, BlinkMacSystemFont, ‘Segoe UI’, ‘Roboto’, ‘Oxygen’,
+‘Ubuntu’, ‘Cantarell’, ‘Fira Sans’, ‘Droid Sans’, ‘Helvetica Neue’,
+sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}`, 'page.tsx': `‘use client’;
+
+import React, { useState, useEffect } from ‘react’;
+import { Bot, Users, DollarSign, Search, MessageSquare, Play, Pause, BarChart3, Mail, Video, Code, Eye, Lock, LogOut, Home, Activity, Bell, Zap } from ‘lucide-react’;
+
+export default function StravaAI() {
+const [isAuthenticated, setIsAuthenticated] = useState(false);
+const [currentView, setCurrentView] = useState(‘dashboard’);
+const [isRunning, setIsRunning] = useState(false);
+const [currentTime, setCurrentTime] = useState(new Date());
+const [reports, setReports] = useState([]);
+const [agentStatus, setAgentStatus] = useState({});
+const [notifications, setNotifications] = useState([]);
+const [clientRequests, setClientRequests] = useState([]);
+const [selectedAgent, setSelectedAgent] = useState(null);
+const [showAgentCreation, setShowAgentCreation] = useState(false);
+const [newAgentSpecs, setNewAgentSpecs] = useState({
+name: ‘’,
+description: ‘’,
+capabilities: ‘’,
+clientRequest: null
+});
+
+// Définition des agents
+const agents = {
+manager: {
+id: ‘manager’,
+name: ‘Agent Manager’,
+icon: Users,
+description: ‘Coordonne tous les agents et génère les rapports’,
+color: ‘bg-gradient-to-r from-purple-500 to-pink-500’,
+tasks: [‘Coordination équipe’, ‘Génération rapports’, ‘Optimisation workflow’]
+},
+commercial: {
+id: ‘commercial’,
+name: ‘Agent Commercial’,
+icon: MessageSquare,
+description: ‘WhatsApp/Telegram support client’,
+color: ‘bg-gradient-to-r from-teal-500 to-blue-500’,
+tasks: [‘Support WhatsApp’, ‘Négociation deals’, ‘Closing ventes’]
+},
+researcher: {
+id: ‘researcher’,
+name: ‘Agent Chercheur’,
+icon: Search,
+description: ‘Recherche nouveaux SaaS/Apps US rentables’,
+color: ‘bg-gradient-to-r from-blue-500 to-cyan-500’,
+tasks: [‘Veille SaaS US’, ‘Analyse MRR’, ‘Étude concurrence’]
+},
+content: {
+id: ‘content’,
+name: ‘Agent Créateur Contenu’,
+icon: Video,
+description: ‘Crée et publie vidéos/posts sur réseaux’,
+color: ‘bg-gradient-to-r from-orange-500 to-red-500’,
+tasks: [‘Création vidéos TikTok’, ‘Posts LinkedIn’, ‘Stories Instagram’]
+},
+finance: {
+id: ‘finance’,
+name: ‘Agent Financier’,
+icon: DollarSign,
+description: ‘Gère finances, tableaux, prévisions’,
+color: ‘bg-gradient-to-r from-yellow-500 to-orange-500’,
+tasks: [‘Suivi revenus’, ‘Prévisions’, ‘Optimisation coûts’]
+},
+creator: {
+id: ‘creator’,
+name: ‘Agent Créateur Agents’,
+icon: Bot,
+description: ‘Développe nouveaux agents sur demande’,
+color: ‘bg-gradient-to-r from-red-500 to-pink-500’,
+tasks: [‘Création agents custom’, ‘Amélioration IA’, ‘Tests performance’]
+},
+developer: {
+id: ‘developer’,
+name: ‘Agent Développeur’,
+icon: Code,
+description: ‘Code apps/SaaS identifiés’,
+color: ‘bg-gradient-to-r from-indigo-500 to-purple-500’,
+tasks: [‘Développement SaaS’, ‘Intégrations API’, ‘Debug & tests’]
+}
+};
+
+// Simulation temps réel
+useEffect(() => {
+const timer = setInterval(() => {
+setCurrentTime(new Date());
+if (isRunning && isAuthenticated) {
+const newStatus = {};
+Object.keys(agents).forEach(agentId => {
+newStatus[agentId] = {
+lastAction: Math.random() > 0.7 ? ‘working’ : ‘idle’,
+tasksCompleted: Math.floor(Math.random() * 10),
+efficiency: Math.floor(Math.random() * 40) + 60,
+currentTask: agents[agentId].tasks[Math.floor(Math.random() * agents[agentId].tasks.length)]
+};
+});
+setAgentStatus(newStatus);
+
+```
+    // Générer des demandes clients
+    if (Math.random() > 0.85) {
+      const clientRequestTypes = [
+        {
+          id: Date.now(),
+          client: 'Restaurant Le Petit Gourmet',
+          request: 'Agent de gestion des réservations',
+          details: 'Chatbot pour gérer les réservations via WhatsApp',
+          urgency: 'Haute',
+          budget: '2500€',
+          deadline: '2 semaines'
+        },
+        {
+          id: Date.now() + 1,
+          client: 'E-commerce Fashion Store',
+          request: 'Agent de recommandation produits',
+          details: 'IA pour recommander des vêtements',
+          urgency: 'Moyenne',
+          budget: '3000€',
+          deadline: '1 mois'
+        }
+      ];
+      
+      const newRequest = clientRequestTypes[Math.floor(Math.random() * clientRequestTypes.length)];
+      setClientRequests(prev => [newRequest, ...prev.slice(0, 4)]);
+      
+      setNotifications(prev => [{
+        id: Date.now(),
+        message: \`📞 Nouvelle demande: \${newRequest.request}\`,
+        time: new Date().toLocaleTimeString('fr-FR'),
+        type: 'client'
+      }, ...prev.slice(0, 4)]);
+    }
+  }
+}, 3000);
+return () => clearInterval(timer);
+```
+
+}, [isRunning, isAuthenticated]);
+
+// Connexion rapide
+const quickLogin = () => {
+setIsAuthenticated(true);
+setNotifications([{
+id: Date.now(),
+message: ‘Connexion réussie ! Bienvenue sur STRAVA AI’,
+time: new Date().toLocaleTimeString(‘fr-FR’),
+type: ‘success’
+}]);
+};
+
+// Génération rapports
+const generateReport = () => {
+const newReport = {
+id: Date.now(),
+time: new Date().toLocaleTimeString(‘fr-FR’),
+summary: {
+revenue: Math.floor(Math.random() * 8000) + 2000,
+newSaaS: Math.floor(Math.random() * 3) + 1,
+socialPosts: Math.floor(Math.random() * 15) + 5,
+clientRequests: Math.floor(Math.random() * 5) + 1,
+newAgents: Math.random() > 0.7 ? 1 : 0
+}
+};
+setReports([newReport, …reports.slice(0, 4)]);
+
+```
+setNotifications(prev => [{
+  id: Date.now(),
+  message: \`Rapport généré: +\${newReport.summary.revenue}€\`,
+  time: new Date().toLocaleTimeString('fr-FR'),
+  type: 'info'
+}, ...prev.slice(0, 4)]);
+```
+
+};
+
+// Créer nouvel agent
+const createNewAgent = () => {
+if (!newAgentSpecs.name || !newAgentSpecs.description) {
+alert(‘Veuillez remplir tous les champs requis’);
+return;
+}
+
+```
+setNotifications(prev => [{
+  id: Date.now(),
+  message: \`🤖 Agent "\${newAgentSpecs.name}" créé !\`,
+  time: new Date().toLocaleTimeString('fr-FR'),
+  type: 'success'
+}, ...prev.slice(0, 4)]);
+
+if (newAgentSpecs.clientRequest) {
+  setClientRequests(prev => prev.filter(req => req.id !== newAgentSpecs.clientRequest.id));
+}
+
+setNewAgentSpecs({ name: '', description: '', capabilities: '', clientRequest: null });
+setShowAgentCreation(false);
+```
+
+};
+
+const startAgentCreationFromRequest = (request) => {
+setNewAgentSpecs({
+name: request.request,
+description: request.details,
+capabilities: ‘’,
+clientRequest: request
+});
+setShowAgentCreation(true);
+};
+
+// Page de connexion
+if (!isAuthenticated) {
+return (
+<div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 flex items-center justify-center">
+<div className="bg-gray-800 rounded-2xl p-8 shadow-2xl w-full max-w-md">
+<div className="text-center mb-8">
+<div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
+STRAVA
+</div>
+<p className="text-gray-300">Plateforme d’Agents IA</p>
+<p className="text-sm text-gray-400 mt-2">Entreprise 100% Autonome</p>
+</div>
+
+```
+      <button
+        onClick={quickLogin}
+        className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-105"
+      >
+        🚀 Accéder à STRAVA
+      </button>
+      
+      <div className="mt-6 text-center text-gray-400 text-sm">
+        <p>Demo en temps réel</p>
+        <p className="mt-1">Cliquez pour explorer l'écosystème</p>
+      </div>
+    </div>
+  </div>
+);
+```
+
+}
+
+const AgentCard = ({ agent, onClick }) => {
+const Icon = agent.icon;
+const status = agentStatus[agent.id] || {};
+
+```
+return (
+  <div 
+    className={\`\${agent.color} rounded-xl p-6 text-white shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer\`}
+    onClick={() => onClick && onClick(agent)}
+  >
+    <div className="flex items-center justify-between mb-4">
+      <Icon className="w-8 h-8" />
+      <div className={\`w-4 h-4 rounded-full \${status.lastAction === 'working' ? 'bg-green-300' : 'bg-gray-300'} animate-pulse\`}></div>
+    </div>
+    <h3 className="font-bold text-lg mb-2">{agent.name}</h3>
+    <p className="text-sm opacity-90 mb-3">{agent.description}</p>
+    
+    {status.currentTask && (
+      <div className="bg-white bg-opacity-20 rounded-lg p-2 mb-3">
+        <p className="text-xs font-medium">En cours:</p>
+        <p className="text-xs">{status.currentTask}</p>
+      </div>
+    )}
+    
+    {status.efficiency && (
+      <div className="text-sm">
+        <div className="flex justify-between mb-1">
+          <span>Efficacité</span>
+          <span>{status.efficiency}%</span>
+        </div>
+        <div className="w-full bg-white bg-opacity-20 rounded-full h-2">
+          <div className="bg-white h-2 rounded-full transition-all duration-500" style={{width: \`\${status.efficiency}%\`}}></div>
+        </div>
+      </div>
+    )}
+    
+    <div className="mt-3 text-xs opacity-75">
+      Cliquez pour voir les détails
+    </div>
+  </div>
+);
+```
+
+};
+
+return (
+<div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
+<nav className="bg-gray-800 border-b border-gray-700 px-6 py-4">
+<div className="flex items-center justify-between">
+<div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+STRAVA
+</div>
+<div className="text-gray-300 text-sm">
+{currentTime.toLocaleTimeString(‘fr-FR’)}
+</div>
+</div>
+</nav>
+
+```
+  <main className="max-w-7xl mx-auto px-6 py-8">
+    <div className="space-y-8">
+      <div className="bg-gray-800 rounded-xl p-6">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-white">Centre de Contrôle STRAVA</h2>
+          <div className="flex space-x-4">
+            <button
+              onClick={() => setIsRunning(!isRunning)}
+              className={\`flex items-center px-6 py-3 rounded-lg font-semibold transition-all \${
+                isRunning 
+                  ? 'bg-red-600 hover:bg-red-700 text-white' 
+                  : 'bg-green-600 hover:bg-green-700 text-white'
+              }\`}
+            >
+              {isRunning ? <Pause className="w-5 h-5 mr-2" /> : <Play className="w-5 h-5 mr-2" />}
+              {isRunning ? 'Arrêter' : 'Démarrer'} Écosystème
+            </button>
+            <button
+              onClick={generateReport}
+              className="flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-all"
+            >
+              <BarChart3 className="w-5 h-5 mr-2" />
+              Générer Rapport
+            </button>
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="bg-gradient-to-r from-green-500 to-emerald-600 p-4 rounded-lg text-white">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm opacity-90">Revenus Aujourd'hui</p>
+                <p className="text-2xl font-bold">
+                  {reports.length > 0 ? \`\${reports[0].summary.revenue}€\` : '0€
+```
